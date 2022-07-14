@@ -45,7 +45,7 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'com.squareup.retrofit2:retrofit:2.1.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.1.0'
-
+    //implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
     // Junit
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.0.0")
 // to run JUnit 3/4 tests:

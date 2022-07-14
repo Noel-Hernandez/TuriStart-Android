@@ -1,6 +1,9 @@
 package com.example.dropdownmenu;
 
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -8,6 +11,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     AutoCompleteTextView autoCompleteTxt4;
     ArrayAdapter<String> adapterItems4;
     Button btnBuscar;
+    Button btnLink;
     private String camino;
     private String tipo;
     private String valoracion;
@@ -48,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
     private ImageView imageView1;
     private String itemCamino, itemType, itemValue, itemprovincia;
     private TextView txtNombre;
+    //private TextView txtVideo;
+    private VideoView videoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,10 +71,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-
         btnBuscar = findViewById(R.id.btnBuscar);
-
+          btnLink=findViewById(R.id.btnLink);
 
         adapterItems = new ArrayAdapter<String>(this, R.layout.list_item, itemsCamino);
         autoCompleteTxt.setAdapter(adapterItems);
@@ -138,17 +143,15 @@ public class MainActivity extends AppCompatActivity {
                     String urlImg = jsonObject.getString("imagen");
                     //obtiene el nombre a mostrar
                     txtNombre.setText(jsonObject.getString("nombre"));
-
-
+                    String urlVideo = jsonObject.getString("video");;
                     //carga la imagen con solo el url
                     Picasso.get().load(urlImg).into(imageView1);
-
+                  //  Picasso.get().load(urlVideo).into(imageView1);
                     System.out.println("este es  " + txtNombre.getText() + " espacio " + urlImg );
 
-                    //cambia la visibilidad
                     txtNombre.setVisibility(View.VISIBLE);
                     imageView1.setVisibility(View.VISIBLE);
-
+                    btnLink.setVisibility(View.VISIBLE);
 
                 } catch (Exception e){
                     e.printStackTrace();
