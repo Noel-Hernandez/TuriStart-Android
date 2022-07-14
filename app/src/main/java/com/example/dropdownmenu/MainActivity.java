@@ -1,5 +1,6 @@
 package com.example.dropdownmenu;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -22,6 +23,8 @@ import com.android.volley.toolbox.Volley;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
+
+import java.net.URI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -143,7 +146,8 @@ public class MainActivity extends AppCompatActivity {
                     String urlImg = jsonObject.getString("imagen");
                     //obtiene el nombre a mostrar
                     txtNombre.setText(jsonObject.getString("nombre"));
-                    String urlVideo = jsonObject.getString("video");;
+                    String urlVideo = jsonObject.getString("video");
+
                     //carga la imagen con solo el url
                     Picasso.get().load(urlImg).into(imageView1);
                   //  Picasso.get().load(urlVideo).into(imageView1);
@@ -152,6 +156,14 @@ public class MainActivity extends AppCompatActivity {
                     txtNombre.setVisibility(View.VISIBLE);
                     imageView1.setVisibility(View.VISIBLE);
                     btnLink.setVisibility(View.VISIBLE);
+                    btnLink.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Uri link= Uri.parse(urlVideo);
+                            Intent i = new Intent(Intent.ACTION_VIEW,link);
+                            startActivity(i);
+                        }
+                    });
 
                 } catch (Exception e){
                     e.printStackTrace();
